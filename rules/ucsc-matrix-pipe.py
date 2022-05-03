@@ -23,6 +23,7 @@ rule sample_list:
 		rows = h.loc[h['pangolin_lineage'].isin(ls)]
 		if ( NUM_SAMPLE and rows.shape[0] > NUM_SAMPLE ):
 			rows = rows.sample(n=NUM_SAMPLE)
+		print(params.lin, rows.shape[0])
 		out.write("\n".join(rows['strain'])+"\n")
 
 rule lineage_vcf:
