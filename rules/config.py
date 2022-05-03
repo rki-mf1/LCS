@@ -17,6 +17,7 @@ PB_URL='https://hgdownload.soe.ucsc.edu/goldenPath/wuhCor1/UShER_SARS-CoV-2/'
 PB_VERSION='2021-08-19'
 PB='data/ucsc-sars-cov-2/public-{}.all.masked.pb.gz'.format(PB_VERSION)
 PB_METADATA='data/ucsc-sars-cov-2/public-{}.metadata.tsv.gz'.format(PB_VERSION)
+NUM_SAMPLE=10000
 
 # primer list for amplicon trimming
 PRIMERS_FA='data/artic_v3_primers.fa'
