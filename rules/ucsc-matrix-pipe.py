@@ -21,6 +21,7 @@ rule sample_list:
 		out = open(output[0], 'wt')
 		ls = params.lin.split(",")
 		rows = h.loc[h['pangolin_lineage'].isin(ls)]
+		rows = rows.sample(n=NUM_SAMPLE)
 		out.write("\n".join(rows['strain'])+"\n")
 
 rule lineage_vcf:
