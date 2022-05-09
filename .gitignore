@@ -5,3 +5,6 @@ data/pango-designation
 data/ucsc-sars-cov-2
 data/fastq
 data/gisaid.fa.gz
+helper_scripts/.nextflow*
+helper_scripts/work
+helper_scripts/results
