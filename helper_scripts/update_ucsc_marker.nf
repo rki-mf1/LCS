@@ -23,17 +23,17 @@ if ( params.lcs_ucsc_update ){
         params.lcs_ucsc = latest_version
     }
     if ( internetcheck.toString() == "false" ) { 
-        println "\033[0;33mCould not find the latest UCSC version, trying: " + params.lcs_ucsc_default + "\033[0m"
-        params.lcs_ucsc = params.lcs_ucsc_default
+        println "\033[0;33mCould not find the latest UCSC version, trying: " + params.lcs_ucsc_version + "\033[0m"
+        params.lcs_ucsc = params.lcs_ucsc_version
     }
-} else { params.lcs_ucsc = params.lcs_ucsc_default}
+} else { params.lcs_ucsc = params.lcs_ucsc_version}
 
 if (params.variant_groups != 'default') {
     variant_group_ch = Channel.fromPath("$params.variant_groups", checkIfExists: true)
 }
 
 process lcs_ucsc_markers_table {
-    container 'rkimf1/lcs:1.1.0--24a0909'
+    container 'rkimf1/lcs:1.1.0--6963bd2'
     // execution properties
     executor 'slurm'
     cpus 10
@@ -49,7 +49,7 @@ process lcs_ucsc_markers_table {
     path("LCS/outputs/variants_table/ucsc-markers-table-*.tsv")
 
     script:
-    if ( params.lcs_ucsc_update || params.lcs_ucsc_default != 'predefined')
+    if ( params.lcs_ucsc_update || params.lcs_ucsc_version != 'predefined')
         """
         git clone https://github.com/MarieLataretu/LCS.git
         git rev-parse HEAD
@@ -70,7 +70,7 @@ process lcs_ucsc_markers_table {
         # output
         mv outputs/variants_table/ucsc-markers-table.tsv outputs/variants_table/ucsc-markers-table-${params.lcs_ucsc}.tsv 
         """
-    else if ( params.lcs_ucsc_default == 'predefined' )
+    else if ( params.lcs_ucsc_version == 'predefined' )
         """
         git clone https://github.com/MarieLataretu/LCS.git
         git rev-parse HEAD
