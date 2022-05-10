@@ -51,7 +51,7 @@ process lcs_ucsc_markers_table {
     script:
     if ( params.lcs_ucsc_update || params.lcs_ucsc_version != 'predefined')
         """
-        git clone https://github.com/MarieLataretu/LCS.git
+        git clone https://github.com/rki-mf1/LCS.git
         git rev-parse HEAD
 
         if [[ "${variant_group_tsv}" != default ]]; then
@@ -72,7 +72,7 @@ process lcs_ucsc_markers_table {
         """
     else if ( params.lcs_ucsc_version == 'predefined' )
         """
-        git clone https://github.com/MarieLataretu/LCS.git
+        git clone https://github.com/rki-mf1/LCS.git
         git rev-parse HEAD
         mkdir -p LCS/outputs/variants_table
         zcat LCS/data/pre-generated-marker-tables/ucsc-markers-${params.lcs_ucsc_predefined}.tsv.gz > LCS/outputs/variants_table/ucsc-markers-table.tsv
