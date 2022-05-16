@@ -19,11 +19,13 @@ rule sample_list:
 	run:
 		h = pandas.read_csv(input[0], sep='\t')
 		out = open(output[0], 'wt')
-		ls = params.lin.split(",")
+		ls = params.lin.strip().split(",")
 		rows = h.loc[h['pangolin_lineage'].isin(ls)]
 		if ( NUM_SAMPLE and rows.shape[0] > NUM_SAMPLE ):
 			rows = rows.sample(n=NUM_SAMPLE)
 		print(params.lin, rows.shape[0])
+		if rows.shape[0] == 0:
+			sys.exit(f"0 samples for {params.lin} found in the meta data. Check you variant groups file.")
 		out.write("\n".join(rows['strain'])+"\n")
 
 rule lineage_vcf:
