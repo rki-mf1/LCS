@@ -33,7 +33,10 @@ nextflow run update_ucsc_marker.nf -profile singularity --singularity_cache_dir 
 
 |parameter|time|
 |-|-|
-|`--downsampling 'None'`  | ~ 1 d 18 h|
+|`--downsampling 'None'`  | ~ 1 d 18 h / ~ 3 h *|
 |`--downsampling 100000`  | ~ 60 min|
 |`--downsampling 10000`   | ~ 8-12 min|
 |`--downsampling 1000`    | ~ 2-4 min|
+
+
+*) with the current Usher version (0.5.4) in the current container, it seems to be really fast
