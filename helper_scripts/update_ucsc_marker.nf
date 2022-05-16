@@ -46,7 +46,7 @@ process lcs_ucsc_markers_table {
     path(variant_group_tsv)
 
     output:
-    path("LCS/outputs/variants_table/ucsc-markers-table-*.tsv")
+    path("LCS/outputs/variants_table/ucsc-markers-*.tsv")
 
     script:
     if ( params.lcs_ucsc_update || params.lcs_ucsc_version != 'predefined')
@@ -68,7 +68,7 @@ process lcs_ucsc_markers_table {
         snakemake --cores ${task.cpus} --resources mem_gb=\$mem --config dataset=somestring markers=ucsc -- ucsc_gather_tables
         # --set-threads pool_mutect=${task.cpus}
         # output
-        mv outputs/variants_table/ucsc-markers-table.tsv outputs/variants_table/ucsc-markers-table-${params.lcs_ucsc}.tsv 
+        mv outputs/variants_table/ucsc-markers-table.tsv outputs/variants_table/ucsc-markers-${params.lcs_ucsc}.tsv 
         """
     else if ( params.lcs_ucsc_version == 'predefined' )
         """
@@ -76,7 +76,7 @@ process lcs_ucsc_markers_table {
         git rev-parse HEAD
         mkdir -p LCS/outputs/variants_table
         zcat LCS/data/pre-generated-marker-tables/ucsc-markers-${params.lcs_ucsc_predefined}.tsv.gz > LCS/outputs/variants_table/ucsc-markers-table.tsv
-        mv LCS/outputs/variants_table/ucsc-markers-table.tsv LCS/outputs/variants_table/ucsc-markers-table-predefined.tsv 
+        mv LCS/outputs/variants_table/ucsc-markers-table.tsv LCS/outputs/variants_table/ucsc-markers-predefined.tsv 
         """
 }
 
