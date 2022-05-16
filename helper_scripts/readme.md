@@ -1,7 +1,13 @@
 ## Update the UCSC marker table
 
+### specific UCSC tree version
 ```
-nextflow run update_ucsc_marker.nf -profile singularity -resume --lcs_ucsc_version '2022-05-08' --downsampling 'None'
+nextflow run update_ucsc_marker.nf -profile singularity --singularity_cache_dir /path/to/your/cache -resume --downsampling 'None' --lcs_ucsc_version '2022-05-08'
+```
+
+### the latest UCSC tree version
+```
+nextflow run update_ucsc_marker.nf -profile singularity --singularity_cache_dir /path/to/your/cache -resume --downsampling 'None' --lcs_ucsc_update
 ```
 
 ## Options
