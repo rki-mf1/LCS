@@ -33,7 +33,7 @@ if (params.variant_groups != 'default') {
 }
 
 process lcs_ucsc_markers_table {
-    container 'rkimf1/lcs:1.1.0--6963bd2'
+    container 'rkimf1/lcs:1.1.0--607c188'
     // execution properties
     executor 'slurm'
     cpus 10

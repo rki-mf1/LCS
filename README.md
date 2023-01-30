@@ -1,4 +1,5 @@
 This fork contains the following changes:
+
 - downsampling functionality for UCSC marker table generation
 - an updated variant group table
 
